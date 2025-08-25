@@ -18,8 +18,7 @@
 - 页面设计：添加微信头像、昵称及“点击获取头像和昵称”按钮
 - 功能实现：通过 JS 获取微信用户信息，并动态显示在页面上（由于版本原因未真正实现）
 3. 实验报告：
-实验报告（[https://blog.csdn.net/scsdvsvf/article/details/150772684?fromshare=blogdetail&sharetype=blogdetail&sharerId=150772684&sharerefer=PC&sharesource=scsdvsvf&sharefrom=from_link]
-）
+实验报告 [实验1 第一个微信小程序](https://blog.csdn.net/scsdvsvf/article/details/150772684)
 4. 程序运行效果：
 页面显示微信头像和昵称
 5. 心得与体会：
