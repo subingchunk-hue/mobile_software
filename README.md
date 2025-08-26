@@ -36,7 +36,7 @@
    - 集成和风天气API，实现实时天气数据获取
    - 实现省市区三级联动选择器
    - 添加天气图标显示和自动更新功能
-3. 实验报告：
+3. 实验报告：[实验 2：天气查询小程序](https://blog.csdn.net/scsdvsvf/article/details/150865200?sharetype=blogdetail&sharerId=150865200&sharerefer=PC&sharesource=scsdvsvf&spm=1011.2480.3001.8118)
 4. 程序运行效果：
    - 支持全国各省市天气查询
    - 实时显示温度、天气状况和对应图标
