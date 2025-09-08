@@ -1,0 +1,75 @@
+{
+  "HVIGOR_OHOS_PLUGIN": {
+    "MODULES": [
+      {
+        "MODULE_NAME": "1043bfc77febe75fafec0c4309faccf1",
+        "API_TYPE": "stageMode"
+      }
+    ],
+    "NATIVE_COMPILER": "Default",
+    "BUILD_MODE": "debug",
+    "USE_NORMALIZED_OHMURL": true
+  },
+  "HVIGOR": {
+    "IS_INCREMENTAL": true,
+    "IS_DAEMON": true,
+    "IS_PARALLEL": true,
+    "IS_HVIGORFILE_TYPE_CHECK": false,
+    "TASK_TIME": {
+      "1043bfc77febe75fafec0c4309faccf1": {
+        "init": 3344600,
+        "PreBuild": 482222100,
+        "CreateModuleInfo": 4150100,
+        "MergeProfile": 15501100,
+        "CreateBuildProfile": 9938500,
+        "PreCheckSyscap": 2308500,
+        "GeneratePkgContextInfo": 34431400,
+        "ProcessProfile": 451588100,
+        "ProcessRouterMap": 23706700,
+        "ProcessStartupConfig": 17356700,
+        "PreviewProcessResource": 22276600,
+        "GenerateLoaderJson": 185426900,
+        "PreviewCompileResource": 1197373400,
+        "PreviewHookCompileResource": 3113100,
+        "CopyPreviewProfile": 24782100,
+        "ReplacePreviewerPage": 2759800,
+        "buildPreviewerResource": 1481100,
+        "PreviewUpdateAssets": 42426200,
+        "PreviewArkTS": 44638923300,
+        "PreviewBuild": 12740200
+      },
+      "APP": {
+        "init": 3778100
+      }
+    },
+    "APIS": [
+      "getHvigorConfig",
+      "getRootNodeDescriptor",
+      "getChildNode",
+      "getNodeByName",
+      "getAllNodes",
+      "getRootNode",
+      "getNodeName",
+      "getStartParams",
+      "buildFinished",
+      "getNodePath",
+      "subNodes",
+      "getExtraOption",
+      "getExtParam",
+      "getExtParams",
+      "getProperty",
+      "getProperties",
+      "getParameter",
+      "getProductName",
+      "nodesEvaluated",
+      "getCommandEntryTask"
+    ],
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor_keepDependency": true
+    },
+    "BUILD_ID": "202509081427221210",
+    "TOTAL_TIME": 47809131700
+  }
+}
