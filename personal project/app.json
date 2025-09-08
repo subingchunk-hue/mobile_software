@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/avatar-selector/avatar-selector",
+    "pages/character-setup/character-setup",
+    "pages/game/game",
+    "pages/game-detail/game-detail",
+    "pages/memory-detail/memory-detail",
+    "pages/photo-album/photo-album"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "“我”的大学",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,168 @@
+/* memory-detail.wxss */
+.page {
+  height: 100vh;
+  background: var(--retro-white);
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-container {
+  flex: 1;
+  padding: 40rpx;
+  overflow-y: auto;
+  padding-bottom: 200rpx; /* 为上传照片功能预留空间 */
+  max-height: calc(100vh - 80rpx);
+  border-bottom: 2rpx solid rgba(139, 69, 19, 0.2);
+}
+
+/* 头部返回按钮 */
+.header {
+  margin-bottom: 40rpx;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 248, 225, 0.8);
+  border: none;
+  border-radius: 50rpx;
+  padding: 16rpx 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(139, 69, 19, 0.15);
+  transition: all 0.3s ease;
+}
+
+.back-btn::after {
+  border: none;
+}
+
+.back-btn:active {
+  background: rgba(255, 248, 225, 0.9);
+  transform: scale(0.95);
+}
+
+.back-icon {
+  font-size: 32rpx;
+  color: var(--text-primary);
+  margin-right: 12rpx;
+}
+
+.back-text {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+/* 详情内容 */
+.detail-content {
+  background: rgba(255, 248, 225, 0.95);
+  border-radius: 20rpx;
+  padding: 60rpx; /* 扩大内边距 */
+  margin: 20rpx 0; /* 增加外边距 */
+  box-shadow: 0 8rpx 32rpx rgba(139, 69, 19, 0.15);
+  border: 2rpx solid rgba(139, 69, 19, 0.2);
+  min-height: calc(100vh - 200rpx); /* 响应式高度 */
+  max-height: none;
+}
+
+.detail-item {
+  margin-bottom: 40rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.detail-label {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.detail-value {
+  display: block;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+/* 不同类型的值样式 */
+.detail-value.semester {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--primary-brown);
+}
+
+.detail-value.summary {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.detail-value.description {
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.detail-value.mood {
+  font-size: 28rpx;
+  color: var(--retro-orange);
+  font-style: italic;
+}
+
+.detail-value.time {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.detail-value.create-time {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+/* 图片画廊 */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+
+.memory-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  object-fit: cover;
+  box-shadow: 0 4rpx 16rpx rgba(139, 69, 19, 0.15);
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+  width: 100%;
+  margin-top: 40rpx;
+  padding: 24rpx;
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  box-shadow: 0 4rpx 16rpx rgba(255, 71, 87, 0.3);
+  transition: all 0.3s ease;
+}
+
+.delete-btn::after {
+  border: none;
+}
+
+.delete-btn:active {
+  background: #ff3742;
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(255, 71, 87, 0.4);
+}

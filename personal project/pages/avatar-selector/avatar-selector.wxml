@@ -1,0 +1,19 @@
+<!--pages/avatar-selector/avatar-selector.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">选择头像</text>
+    <text class="subtitle">滑动选择你喜欢的头像</text>
+  </view>
+  
+  <view class="avatar-grid">
+    <view class="avatar-item" wx:for="{{avatarList}}" wx:key="index" bindtap="selectAvatar" data-avatar="{{item}}">
+      <image class="avatar-image {{selectedAvatar === item ? 'selected' : ''}}" src="{{item}}" mode="aspectFill"></image>
+      <view class="check-mark" wx:if="{{selectedAvatar === item}}">✓</view>
+    </view>
+  </view>
+  
+  <view class="actions">
+    <button class="cancel-btn" bindtap="cancel">取消</button>
+    <button class="confirm-btn" bindtap="confirm" disabled="{{!selectedAvatar}}">确认选择</button>
+  </view>
+</view>

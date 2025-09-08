@@ -1,0 +1,48 @@
+<!--pages/photo-album/photo-album.wxml-->
+<view class="page">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">相册集</text>
+  </view>
+
+  <!-- 相册内容 -->
+  <view class="album-container">
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{albumGroups.length === 0}}">
+      <text class="empty-text">还没有上传任何照片</text>
+      <text class="empty-tip">在添加回忆时上传照片，照片会自动归类到这里</text>
+    </view>
+
+    <!-- 相册分组列表 -->
+    <view wx:else>
+      <view class="album-group" wx:for="{{albumGroups}}" wx:key="title">
+        <view class="group-header">
+          <text class="group-title">{{item.title}}</text>
+          <text class="photo-count">{{item.images.length}}张照片</text>
+        </view>
+        
+        <!-- 回忆详情 -->
+        <view class="memory-details" wx:if="{{item.description || item.mood || item.time}}">
+          <text class="memory-description" wx:if="{{item.description}}">{{item.description}}</text>
+          <text class="memory-mood" wx:if="{{item.mood}}">心情：{{item.mood}}</text>
+          <text class="memory-time" wx:if="{{item.time}}">时间：{{item.time}}</text>
+        </view>
+        
+        <!-- 照片网格 -->
+        <view class="photo-grid">
+          <image 
+            class="photo-item" 
+            wx:for="{{item.images}}" 
+            wx:for-item="imageUrl" 
+            wx:key="*this"
+            src="{{imageUrl}}"
+            mode="aspectFill"
+            bindtap="previewPhoto"
+            data-current="{{imageUrl}}"
+            data-urls="{{item.images}}"
+          />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

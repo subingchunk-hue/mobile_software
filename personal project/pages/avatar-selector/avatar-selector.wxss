@@ -1,0 +1,153 @@
+/* pages/avatar-selector/avatar-selector.wxss */
+.container {
+  padding: 40rpx;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--retro-blue) 0%, var(--retro-blue-light) 100%);
+  position: relative;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20rpx); }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60rpx;
+  padding-top: 40rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: normal;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 4rpx rgba(139, 69, 19, 0.2);
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  opacity: 0.9;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30rpx;
+  margin-bottom: 80rpx;
+  padding: 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  box-shadow: 0 8rpx 25rpx rgba(139, 69, 19, 0.15);
+  background: rgba(255, 248, 225, 0.95);
+  padding: 8rpx;
+}
+
+.avatar-image.selected {
+  border-color: var(--primary-brown);
+  border-width: 6rpx;
+  transform: scale(1.05);
+  box-shadow: 0 12rpx 35rpx rgba(139, 69, 19, 0.3);
+}
+
+.check-mark {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: linear-gradient(45deg, #74b9ff, #0984e3);
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 26rpx;
+  font-weight: normal;
+  box-shadow: 0 4rpx 15rpx rgba(116, 185, 255, 0.4);
+  border: 3rpx solid white;
+}
+
+.actions {
+  display: flex;
+  gap: 30rpx;
+  padding: 0 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.cancel-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  color: #666;
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  border-radius: 50rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cancel-btn::after {
+  border: none;
+}
+
+.cancel-btn:active {
+  transform: scale(0.95);
+}
+
+.confirm-btn {
+  flex: 1;
+  background: var(--warm-bg);
+  color: var(--dark-brown);
+  border: none;
+  border-radius: 50rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  box-shadow: 0 8rpx 25rpx rgba(101, 67, 33, 0.15);
+  transition: all 0.3s ease;
+}
+
+.confirm-btn::after {
+  border: none;
+}
+
+.confirm-btn:active {
+  transform: scale(0.95);
+}
+
+.confirm-btn[disabled] {
+  background: rgba(255, 255, 255, 0.6);
+  color: rgba(102, 102, 102, 0.6);
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.1);
+}
+
+.confirm-btn.active {
+  background: var(--warm-bg);
+  transform: translateY(-2rpx);
+  box-shadow: 0 12rpx 35rpx rgba(101, 67, 33, 0.4);
+  color: var(--dark-brown);
+}
+
+.confirm-btn.disabled {
+  background: rgba(245, 222, 179, 0.5);
+  color: rgba(101, 67, 33, 0.5);
+}
