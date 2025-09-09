@@ -807,70 +807,118 @@
   gap: 20rpx;
 }
 
-.image-preview-area {
-  display: flex;
-  flex-wrap: wrap;
+/* 照片网格容器 */
+.photo-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16rpx;
-  margin-bottom: 20rpx;
+  width: 100%;
 }
 
-.image-preview-item {
+/* 照片网格项 */
+.photo-grid-item {
   position: relative;
-  width: 120rpx;
-  height: 120rpx;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12rpx;
+  overflow: hidden;
 }
 
-.preview-image {
+/* 网格中的照片 */
+.grid-photo {
   width: 100%;
   height: 100%;
   border-radius: 12rpx;
   object-fit: cover;
-  border: 2rpx solid rgb(224, 224, 224);
+  border: 2rpx solid rgb(240, 240, 240);
 }
 
-.image-delete-btn {
+/* 照片删除按钮 */
+.photo-delete-btn {
   position: absolute;
-  top: -8rpx;
-  right: -8rpx;
-  width: 32rpx;
-  height: 32rpx;
-  background: rgb(255, 71, 87);
+  top: -6rpx;
+  right: -6rpx;
+  width: 28rpx;
+  height: 28rpx;
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 20rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
-.upload-actions {
+.delete-icon {
+  color: white;
+  font-size: 18rpx;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* 添加照片按钮 */
+.photo-add-btn {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2rpx dashed rgb(204, 204, 204);
+  border-radius: 12rpx;
+  background: rgb(250, 250, 250);
   display: flex;
   align-items: center;
-  gap: 20rpx;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.upload-btn {
+.photo-add-btn:active {
+  background: rgb(240, 240, 240);
+  border-color: rgb(180, 180, 180);
+}
+
+.add-icon {
+  font-size: 48rpx;
+  color: rgb(153, 153, 153);
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* 上传进度样式 */
+.upload-progress-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 120rpx;
-  height: 120rpx;
-  border: 2rpx dashed rgb(204, 204, 204);
-  border-radius: 12rpx;
-  background: rgb(250, 250, 250);
+  z-index: 10;
 }
 
-.upload-icon {
-  font-size: 40rpx;
-  margin-bottom: 8rpx;
+.progress-circle {
+  color: white;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
 }
 
-.upload-text {
-  font-size: 22rpx;
-  color: rgb(102, 102, 102);
+.progress-bar {
+  width: 80%;
+  height: 6rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3rpx;
+  overflow: hidden;
 }
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 3rpx;
+  transition: width 0.3s ease;
+}
+
+
 
 .upload-tip {
   font-size: 22rpx;

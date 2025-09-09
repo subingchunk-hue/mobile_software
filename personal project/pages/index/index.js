@@ -12,7 +12,7 @@ Page({
     showModal: false, // 控制弹窗显示
     semesterOptions: [
       '大一上','大一寒假', '大一下', '大一暑假','大二上', '大二寒假','大二下','大二暑假',
-      '大三上','大三寒假', '大三下','大三暑假', '大四上', '大四寒假','大四下'
+      '大三上','大三寒假', '大三下','大三暑假', '大四上', '大四寒假','大四下','大学毕业'
     ],
     semesterIndex: 0, // 当前选中的学期索引
     formData: {
@@ -23,7 +23,9 @@ Page({
       semester: '大一上' // 学期
     },
     selectedImages: [], // 选中的图片
-    uploadingImages: false // 图片上传状态
+    uploadingImages: false, // 图片上传状态
+    uploadProgress: [], // 每张图片的上传进度
+    totalProgress: 0 // 总体上传进度
   },
 
   onLoad() {
@@ -461,15 +463,39 @@ Page({
       return []
     }
 
-    this.setData({ uploadingImages: true })
+    const imageCount = this.data.selectedImages.length
+    this.setData({ 
+      uploadingImages: true,
+      uploadProgress: new Array(imageCount).fill(0),
+      totalProgress: 0
+    })
     
     try {
-      const uploadPromises = this.data.selectedImages.map(image => {
+      const uploadPromises = this.data.selectedImages.map((image, index) => {
         const cloudPath = `memories/${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${image.tempFilePath.split('.').pop()}`
         
-        return wx.cloud.uploadFile({
-          cloudPath: cloudPath,
-          filePath: image.tempFilePath
+        return new Promise((resolve, reject) => {
+          const uploadTask = wx.cloud.uploadFile({
+            cloudPath: cloudPath,
+            filePath: image.tempFilePath,
+            success: resolve,
+            fail: reject
+          })
+          
+          // 监听上传进度
+          uploadTask.onProgressUpdate((res) => {
+            const progress = Math.round(res.progress)
+            const currentProgress = [...this.data.uploadProgress]
+            currentProgress[index] = progress
+            
+            // 计算总体进度
+            const totalProgress = Math.round(currentProgress.reduce((sum, p) => sum + p, 0) / imageCount)
+            
+            this.setData({
+              uploadProgress: currentProgress,
+              totalProgress: totalProgress
+            })
+          })
         })
       })
       
@@ -486,7 +512,11 @@ Page({
       })
       throw error
     } finally {
-      this.setData({ uploadingImages: false })
+      this.setData({ 
+        uploadingImages: false,
+        uploadProgress: [],
+        totalProgress: 0
+      })
     }
   },
 

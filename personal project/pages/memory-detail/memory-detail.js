@@ -1,7 +1,13 @@
 // memory-detail.js
 Page({
   data: {
-    memoryDetail: {}
+    memoryDetail: {},
+    isEditing: false,
+    editTitle: '',
+    editSummary: '',
+    editDescription: '',
+    editMood: '',
+    editImages: []
   },
 
   onLoad: function(options) {
@@ -105,5 +111,123 @@ Page({
         icon: 'error'
       });
     }
+  },
+
+  // 修改回忆
+  editMemory: function() {
+    if (!this.data.memoryDetail) {
+      wx.showToast({
+        title: '回忆数据不存在',
+        icon: 'error'
+      });
+      return;
+    }
+    
+    this.setData({
+      isEditing: true,
+      editTitle: this.data.memoryDetail.title || '',
+      editSummary: this.data.memoryDetail.summary || '',
+      editDescription: this.data.memoryDetail.description || '',
+      editMood: this.data.memoryDetail.mood || '',
+      editImages: [...(this.data.memoryDetail.images || [])]
+    });
+  },
+
+  // 输入事件处理
+  onTitleInput(e) {
+    this.setData({
+      editTitle: e.detail.value
+    });
+  },
+
+  onSummaryInput(e) {
+    this.setData({
+      editSummary: e.detail.value
+    });
+  },
+
+  onDescriptionInput(e) {
+    this.setData({
+      editDescription: e.detail.value
+    });
+  },
+
+  onMoodInput(e) {
+    this.setData({
+      editMood: e.detail.value
+    });
+  },
+
+  // 保存编辑
+  saveEdit() {
+    const { editTitle, editSummary, editDescription, editMood, editImages } = this.data;
+    
+    if (!editTitle.trim()) {
+      wx.showToast({
+        title: '请输入标题',
+        icon: 'error'
+      });
+      return;
+    }
+
+    const updatedMemory = {
+      ...this.data.memoryDetail,
+      title: editTitle,
+      summary: editSummary,
+      description: editDescription,
+      mood: editMood,
+      images: editImages
+    };
+
+    // 更新本地存储
+    const memories = wx.getStorageSync('memories') || [];
+    const index = memories.findIndex(item => item.id === updatedMemory.id);
+    if (index !== -1) {
+      memories[index] = updatedMemory;
+      wx.setStorageSync('memories', memories);
+    }
+
+    this.setData({
+      memoryDetail: updatedMemory,
+      isEditing: false
+    });
+
+    wx.showToast({
+      title: '修改成功',
+      icon: 'success'
+    });
+  },
+
+  // 取消编辑
+  cancelEdit() {
+    this.setData({
+      isEditing: false
+    });
+  },
+
+  // 添加照片
+  addPhoto() {
+    const that = this;
+    wx.chooseMedia({
+      count: 9 - this.data.editImages.length,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const newImages = res.tempFiles.map(file => file.tempFilePath);
+        that.setData({
+          editImages: [...that.data.editImages, ...newImages]
+        });
+      }
+    });
+  },
+
+  // 删除照片
+  deletePhoto(e) {
+    const index = e.currentTarget.dataset.index;
+    const editImages = this.data.editImages;
+    editImages.splice(index, 1);
+    this.setData({
+      editImages
+    });
   }
 });

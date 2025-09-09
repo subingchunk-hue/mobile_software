@@ -15,21 +15,27 @@
 
     <!-- 相册分组列表 -->
     <view wx:else>
-      <view class="album-group" wx:for="{{albumGroups}}" wx:key="title">
+      <view class="album-group" wx:for="{{albumGroups}}" wx:key="title" wx:for-index="index">
         <view class="group-header">
           <text class="group-title">{{item.title}}</text>
-          <text class="photo-count">{{item.images.length}}张照片</text>
+          <view class="header-right">
+            <text class="photo-count">{{item.images.length}}张照片</text>
+            <view class="export-btn" bindtap="exportMemory" data-index="{{index}}">
+              <text class="export-icon">📤</text>
+            </view>
+          </view>
         </view>
         
         <!-- 回忆详情 -->
-        <view class="memory-details" wx:if="{{item.description || item.mood || item.time}}">
+        <view class="memory-details" wx:if="{{item.description || item.mood || item.time || item.semester}}">
           <text class="memory-description" wx:if="{{item.description}}">{{item.description}}</text>
           <text class="memory-mood" wx:if="{{item.mood}}">心情：{{item.mood}}</text>
+          <text class="memory-semester" wx:if="{{item.semester}}">学期：{{item.semester}}</text>
           <text class="memory-time" wx:if="{{item.time}}">时间：{{item.time}}</text>
         </view>
         
         <!-- 照片网格 -->
-        <view class="photo-grid">
+        <view class="photo-grid" data-count="{{item.images.length}}">
           <image 
             class="photo-item" 
             wx:for="{{item.images}}" 
@@ -45,4 +51,10 @@
       </view>
     </view>
   </view>
+  
+  <!-- 隐藏的画布，用于生成导出图片 -->
+  <canvas 
+    canvas-id="exportCanvas" 
+    style="width: 750px; height: 1000px; position: fixed; top: -2000px; left: -2000px;"
+  ></canvas>
 </view>

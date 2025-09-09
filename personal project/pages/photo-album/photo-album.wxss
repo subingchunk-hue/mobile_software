@@ -93,6 +93,12 @@
   margin-right: 20rpx;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
 .memory-details {
   margin-bottom: 20rpx;
   padding: 20rpx;
@@ -107,6 +113,10 @@
   color: var(--text-primary);
   line-height: 1.5;
   margin-bottom: 12rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .memory-mood {
@@ -130,19 +140,87 @@
   border-radius: 20rpx;
 }
 
-/* 照片网格 */
+/* 导出按钮 */
+.export-btn {
+  width: 60rpx;
+  height: 60rpx;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease;
+}
+
+.export-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 2rpx 8rpx rgba(76, 175, 80, 0.4);
+}
+
+.export-icon {
+  font-size: 28rpx;
+  color: white;
+}
+
+/* 照片网格 - 智能布局 */
 .photo-grid {
   display: grid;
+  gap: 12rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  margin: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(252, 178, 125, 0.35);
+}
+
+/* 1-2张照片：较大显示 */
+.photo-grid[data-count="1"],
+.photo-grid[data-count="2"] {
+  grid-template-columns: repeat(auto-fit, minmax(200rpx, 1fr));
+  max-width: 500rpx;
+  margin: 20rpx auto;
+}
+
+/* 3张照片：一行三个 */
+.photo-grid[data-count="3"] {
   grid-template-columns: repeat(3, 1fr);
-  gap: 20rpx;
+}
+
+/* 4张照片：2x2布局 */
+.photo-grid[data-count="4"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 5张及以上：3x3布局 */
+.photo-grid:not([data-count="1"]):not([data-count="2"]):not([data-count="3"]):not([data-count="4"]) {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .photo-item {
-  aspect-ratio: 1;
-  border-radius: 20rpx;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
   overflow: hidden;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.15);
   transition: transform 0.3s ease;
+}
+
+/* 1-2张照片时的图片容器样式 */
+.photo-grid[data-count="1"] .photo-item,
+.photo-grid[data-count="2"] .photo-item {
+  aspect-ratio: 1;
+  max-width: 100%;
+}
+
+/* 3张及以上照片时保持正方形 */
+.photo-grid[data-count="3"] .photo-item,
+.photo-grid[data-count="4"] .photo-item,
+.photo-grid:not([data-count="1"]):not([data-count="2"]):not([data-count="3"]):not([data-count="4"]) .photo-item {
+  aspect-ratio: 1;
 }
 
 .photo-item:active {
@@ -152,13 +230,16 @@
 .photo-image {
   width: 100%;
   height: 100%;
-  border-radius: 20rpx;
+  border-radius: 16rpx;
+  object-fit: cover;
 }
 
 /* 响应式调整 */
 @media (max-width: 750rpx) {
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 10rpx;
+    margin: 15rpx;
+    padding: 15rpx;
   }
 }
 
@@ -172,6 +253,13 @@
   }
   
   .photo-grid {
-    gap: 15rpx;
+    gap: 8rpx;
+    margin: 10rpx;
+    padding: 12rpx;
+  }
+  
+  .photo-grid[data-count="1"],
+  .photo-grid[data-count="2"] {
+    max-width: 90%;
   }
 }
