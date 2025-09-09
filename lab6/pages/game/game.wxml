@@ -1,2 +1,19 @@
 <!--pages/game/game.wxml-->
 <text>pages/game/game.wxml</text>
+
+<view class='container'>
+    <view class='title'>第{{level}}关</view>
+
+    <canvas canvas-id='myCanvas'></canvas>
+
+    <view class='btnBox'>
+        <button type='warn' bindtap='up'>↑</button>
+        <view>
+            <button type='warn' bindtap='left'>←</button>
+            <button type='warn' bindtap='down'>↓</button>
+            <button type='warn' bindtap='right'>→</button>
+        </view>
+    </view>
+
+  <button type='warn' bindtap='restartGame'>重新开始</button>
+</view>
